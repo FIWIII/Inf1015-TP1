@@ -1,45 +1,65 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 const int MAX = 10;
 
 struct Inventaire {
-	string nom;
-	string type;
-	int quantite;
-	double prix;
-
+    string nom;
+    string type;
+    int quantite;
+    double prix;
 };
 
-int main() {
+// Fontion afin de lire l'inventaire et trouver item plus cher 
+int lireInventaire(string filename) {
+    ifstream filestream;
+    filestream.open(filename.c_str());
 
-	Inventaire inventaire[MAX]; // Tableau de structures
-	int nombreAliments = 0;
+    Inventaire inventaire[MAX];
+    int n = 0;
 
-	ifstream file("inventaire.txt");
+    
+    string nomCher;
+    string typeCher;
+    int quantiteCher = 0;
+    double prixCher = 0.0;
 
-	if (file.is_open()) {
-		string line;
-		while (nombreAliments < MAX &&
-			file >> inventaire[nombreAliments].nom >>
-			inventaire[nombreAliments].type >>
-			inventaire[nombreAliments].quantite >>
-			inventaire[nombreAliments].prix) {
-			nombreAliments++;
-		}
-		file.close();
+    string readline;
+    while (getline(filestream, readline)) {
+        stringstream ss(readline);
 
-	}
+        getline(ss, inventaire[n].nom, '\t');
+        getline(ss, inventaire[n].type, '\t');
+        ss >> inventaire[n].quantite;
+        ss.ignore();
+        ss >> inventaire[n].prix;
 
-	double prixMax = 0.0;
-	int indiceAlimentCher = -1;
+      
+        if (inventaire[n].prix > prixCher) {
+            nomCher = inventaire[n].nom;
+            typeCher = inventaire[n].type;
+            quantiteCher = inventaire[n].quantite;
+            prixCher = inventaire[n].prix;
+        }
 
-	for (int i = 0; i < nombreAliments; i++) {
-		if (inventaire[i].prix > prixMax) {
-			prixMax = inventaire[i].prix;
-			indiceAlimentCher = i;
-		}
-	}
+        n++;
+    }
+
+    filestream.close();
+
+    // Affichage de l'item le plus cher 
+    cout << quantiteCher << " " << nomCher << " (" << typeCher << ") a " << prixCher << "$ chacun" << endl;
+
+    return 0;
 }
+
+int main() {
+    string file = "inventaire.txt";
+    int result = lireInventaire(file);
+
+    return 0;
+}
+

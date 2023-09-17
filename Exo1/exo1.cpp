@@ -14,7 +14,7 @@ bool estPremier(int n) {
     return true;
 }
 
-int prochainPremier(int n) {
+int trouverPremier(int n) {
     while (true) {
         n= n+1; 
         if (estPremier(n)) {
@@ -33,7 +33,7 @@ int main() {
             cout << "Le prochain nombre premier est " << n << endl;
         }
         else {
-            int nombre = prochainPremier(n);
+            int nombre = trouverPremier(n);
             cout << "Le prochain nombre premier est " << nombre << endl;
         }
 

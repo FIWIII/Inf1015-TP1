@@ -1,9 +1,11 @@
+// Exercice 4 : Tableau trié
 #include <iostream>
 #include <cmath>
 using namespace std;
 
 int main() {
-	int tableau[10];
+	const int taille = 10;
+	int tableau[taille];
 	cout << "Entrez 10 nombres entiers : "; 
 	for (int i = 0; i < 10; i++) {
 		cin >> tableau[i];

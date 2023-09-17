@@ -4,7 +4,7 @@
 #include <ctime>  // pour time
 using namespace std;
 
-int valeurIntervalle(string& message, double min , double max) {
+int lireValeurIntervalle(string& message, double min , double max) {
 	cout << message;
 	double n;
 	cin >> n;
@@ -31,7 +31,7 @@ int main() {
 
 	cout << randomNum << endl;
 
-	int value = valeurIntervalle(message, min, max);
+	int value = lireValeurIntervalle(message, min, max);
 	
 
 	while (value != randomNum) {
@@ -42,7 +42,7 @@ int main() {
 			cout << " Trop haut." << endl;
 		}
 		compteur++;
-		value = valeurIntervalle(message,min,max);
+		value = lireValeurIntervalle(message,min,max);
 
 
 	}
