@@ -8,11 +8,21 @@ int main() {
 	for (int i = 0; i < 10; i++) {
 		cin >> tableau[i];
 	}
+
+	// Le trie à bulle ( bubble sort ): 
+
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9 - i; j++) {;
+			if (tableau[j] > tableau[j + 1]) {
+				int temp = tableau[j];
+				tableau[j] = tableau[j + 1];
+				tableau[j + 1] = temp;
+			}
+		}
+	}
+
 	for (int i = 0; i < 10; i++) {
 		cout << tableau[i] << " ";
 	}
-
-
-
 
 }
